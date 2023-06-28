@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />
+	</settings>
+	
+	<typeAliases>
+		<!-- <typeAlias type="vo.BoardVo" alias="board"/> -->
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="config/mapper/pro.xml"/>
+		<mapper resource="config/mapper/users.xml"/>
+		<mapper resource="config/mapper/region.xml"/>
+		<mapper resource="config/mapper/motel.xml"/>
+		<mapper resource="config/mapper/hotel.xml"/>
+		<mapper resource="config/mapper/map.xml"/>
+		<mapper resource="config/mapper/review.xml"/>
+		<mapper resource="config/mapper/mylike.xml"/>
+		<mapper resource="config/mapper/point.xml"/>
+		<mapper resource="config/mapper/search.xml"/>
+		<mapper resource="config/mapper/seller.xml"/>
+		<mapper resource="config/mapper/admin.xml"/>
+		<mapper resource="config/mapper/usersCoupon.xml"/>
+		<mapper resource="config/mapper/chat.xml"/>
+		<mapper resource="config/mapper/admin_coupon.xml"/>
+		<mapper resource="config/mapper/secession.xml"/>
+		<!-- <mapper resource="config/mybatis/mapper/board_select.xml" />
+		<mapper resource="config/mybatis/mapper/board_insert.xml" />
+		<mapper resource="config/mybatis/mapper/board_update.xml" />
+		<mapper resource="config/mybatis/mapper/board_delete.xml" /> -->
+	</mappers>
+</configuration>

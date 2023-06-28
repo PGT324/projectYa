@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!--  
+	<bean id="yanoljaService" class="service.YanoljaService">
+		<constructor-arg ref="yanoljaDao"/>
+	</bean>
+	-->
+	
+	<bean id="homeService" class="service.HomeService">
+		<constructor-arg ref="homeDAO"/>
+	</bean>
+	
+	<bean id="usersService" class="service.UsersService">
+		<constructor-arg ref="usersDAO"/>
+	</bean>
+	
+		<bean id="regionService" class="service.RegionService">
+		<constructor-arg ref="regionDao"/>
+	</bean>
+	
+	<bean id="motelService" class="service.MotelService">
+		<constructor-arg ref="motelDao"/>
+	</bean>
+	
+	<bean id="hotelService" class="service.HotelService">
+		<constructor-arg ref="hotelDao"/>
+	</bean>
+	
+	<bean id="mapService" class="service.MapService">
+		<constructor-arg ref="mapDao"/>
+	</bean>
+	
+	<bean id="reviewService" class="service.ReviewService">
+		<constructor-arg ref="reviewDAO"/>
+	</bean>
+	
+	<bean id="myLikeService" class="service.MyLikeService">
+		<constructor-arg ref="myLikeDAO"/>
+	</bean>
+	
+	<bean id="pointService" class="service.PointService">
+		<constructor-arg ref="pointDAO"/>
+	</bean>
+	
+	<bean id="searchService" class="service.SearchService">
+		<constructor-arg ref="searchDAO"/>
+	</bean>
+	
+	<bean id="sellerService" class="service.SellerService">
+		<constructor-arg ref="sellerDAO"/>
+	</bean>
+	
+	<bean id="adminService" class="service.AdminService">
+		<constructor-arg ref="adminDao"/>
+	</bean>
+	
+	<bean id="secessionService" class="service.SecessionService">
+		<constructor-arg ref="secessionDao"/>
+	</bean>
+	
+	<bean id="chatService" class="service.ChatService">
+		<constructor-arg ref="chatDao"/>
+	</bean>
+	
+	<bean id="admin_couponService" class="service.Admin_CouponService">
+		<constructor-arg ref="admin_couponDao"/>
+	</bean>
+	
+</beans>

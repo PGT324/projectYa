@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+	<!-- 리뷰 작성하기 -->
+	<insert id="motelReview" parameterType="vo.M_ReviewVO">
+		insert into m_review values(m_review_seq.nextval, #{m_region1_idx}, #{m_region2_idx}, #{motel_idx}, #{m_room_idx}, #{users_idx}, #{name}, #{grade}, #{resdate}, #{nickname}, #{kind}, #{clean}, #{convinience}, #{location}, sysdate, #{content}, #{title})
+	</insert>
+	
+	<!-- 모텔 별점 평균 -->
+	<select id="motelReviewStar" parameterType="int" resultType="int">
+		select nvl((avg(kind) + avg(clean) + avg(convinience) + avg(location)), 0) from m_review where m_region1_idx = #{m_region1_idx} and m_region2_idx = #{m_region2_idx} and motel_idx = #{motel_idx}
+	</select>
+	
+	<!-- 리뷰 작성하기 -->
+	<insert id="hotelReview" parameterType="vo.H_ReviewVO">
+		insert into h_review values(h_review_seq.nextval, #{h_region1_idx}, #{h_region2_idx}, #{hotel_idx}, #{h_room_idx}, #{users_idx}, #{name}, #{grade}, #{resdate}, #{nickname}, #{kind}, #{clean}, #{convinience}, #{location}, sysdate, #{content}, #{title})
+	</insert>
+	
+	<!-- 호텔 별점 평균 -->
+	<select id="hotelReviewStar" parameterType="int" resultType="int">
+		select nvl((avg(kind) + avg(clean) + avg(convinience) + avg(location)), 0) from h_review where h_region1_idx = #{h_region1_idx} and h_region2_idx = #{h_region2_idx} and hotel_idx = #{hotel_idx}
+	</select>
+	
+	<!-- 내가 작성한 리뷰 확인 -->
+	<select id="checkReviewM" resultType="vo.M_ReviewVO" parameterType="int">
+		select * from m_review where users_idx = #{users_idx}
+	</select>
+	
+	<select id="checkReviewH" resultType="vo.H_ReviewVO" parameterType="int">
+		select * from h_review where users_idx = #{users_idx}
+	</select>
+	
+	
+	<!-- 리뷰 인덱스로 리뷰 상세 검색  -->
+	<select id="reviewDetailM" resultType="vo.M_ReviewVO" parameterType="int">
+		select * from m_review where m_review_idx = #{m_review_idx}
+	</select>
+	
+	<select id="reviewDetailH" resultType="vo.H_ReviewVO" parameterType="int">
+		select * from h_review where h_review_idx = #{h_review_idx}
+	</select>
+	
+	<delete id="deleteMReview" parameterType="int">
+		delete m_review where m_review_idx = #{m_review_idx}
+	</delete>
+	
+	<delete id="deleteHReview" parameterType="int">
+		delete h_review where h_review_idx = #{h_review_idx}
+	</delete>
+	
+	<update id="updateMReview" parameterType="vo.M_ReviewVO">
+		update m_review set title = #{title}, content = #{content}, kind = #{kind}, clean = #{clean}, convinience = #{convinience}, location = #{location} where m_review_idx = #{m_review_idx}
+	</update>
+	
+	<update id="updateHReview" parameterType="vo.H_ReviewVO">
+		update h_review set title = #{title}, content = #{content}, kind = #{kind}, clean = #{clean}, convinience = #{convinience}, location = #{location} where h_review_idx = #{h_review_idx}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

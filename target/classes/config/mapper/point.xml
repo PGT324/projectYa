@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="point">
+		<insert id="insertMPoint" parameterType="vo.MPointVO">
+			insert into mpoint values(mpoint_seq.nextval, #{users_idx}, #{value}, #{m_res_idx})
+		</insert>
+		
+		<insert id="insertHPoint" parameterType="vo.HPointVO">
+			insert into hpoint values(hpoint_seq.nextval, #{users_idx}, #{value}, #{h_res_idx})
+		</insert>
+		
+		<select id="selectMPointFromIdx" resultType="vo.MPointVO" parameterType="int">
+			select * from mpoint where users_idx = #{users_idx}
+		</select>
+		
+		<select id="selectHPointFromIdx" resultType="vo.HPointVO" parameterType="int">
+			select * from hpoint where users_idx = #{users_idx}
+		</select>
+		
+		<select id="mresInfo" parameterType="int" resultType="vo.M_Res">
+			select * from m_res where m_res_idx = #{m_res_idx}
+		</select>
+		
+		<select id="hresInfo" parameterType="int" resultType="vo.H_Res">
+			select * from h_res where h_res_idx = #{h_res_idx}
+		</select>
+		
+		<select id="motelName" parameterType="int" resultType="String">
+			select name from motel where motel_idx = (select motel_idx from m_res where m_res_idx = #{m_res_idx})
+		</select>
+		
+		<select id="hotelName" parameterType="int" resultType="String">
+			select name from hotel where hotel_idx = (select hotel_idx from h_res where h_res_idx = #{h_res_idx})
+		</select>
+		
+		<delete id="cancelPointM" parameterType="int">
+			delete mpoint where users_idx = #{users_idx} and m_res_idx = #{m_res_idx}
+		</delete>
+		
+		<delete id="cancelPointH" parameterType="int">
+			delete hpoint where users_idx = #{users_idx} and h_res_idx = #{h_res_idx}
+		</delete>
+		
+		<select id="usersPoint" resultType="int" parameterType="int">
+			select point from users where users_idx = #{users_idx}
+		</select>
+		
+		<select id="selectUse" resultType="int" parameterType="int">
+			select use from users where users_idx = #{users_idx}
+		</select>
+		
+		<update id="updateUse" parameterType="int">
+			update users set use = #{use} where users_idx = #{users_idx}
+		</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

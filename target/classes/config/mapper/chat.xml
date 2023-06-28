@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chat">
+
+	<select id="checkRoomList" parameterType="String" resultType="vo.ChatVO">
+		select * from chat where users_idx = #{idx} 
+	</select>
+	
+	<insert id="createRoom" parameterType="vo.ChatVO">
+		insert into chat values(chat_seq.nextval,#{users_idx},#{lastContent},#{lastDate},#{checked})
+	</insert>
+	
+	<select id="getAllRoomList" resultType="map">
+		select u.nickname,c.* from chat c inner join users u on c.users_idx = u.users_idx
+	</select>
+	
+	<update id="oneChatUp" parameterType="map">
+		update chat set lastcontent = #{content},lastdate = #{date} , checked = #{checked} where users_idx = #{idx}
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

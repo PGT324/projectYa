@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="seller">
+	
+	<insert id="insertSeller" parameterType="vo.SellerVO">
+		insert into seller values(seller_seq.nextval, #{users_idx}, #{name}, #{exp}, #{snumber}, #{ad}, #{status})
+	</insert>
+	
+	<select id="selectSeller" parameterType="int" resultType="vo.SellerVO">
+		select * from seller where users_idx = #{users_idx}
+	</select>
+	
+	<update id="updateSeller" parameterType="vo.SellerVO">
+		update seller set name = #{name}, exp = #{exp}, users_idx = #{users_idx}, snumber = #{snumber}, ad = #{ad}, status = #{status} where users_idx = #{users_idx}
+	</update>
+	
+	<update id="updateStatus" parameterType="int">
+		update seller set status = 0 where snumber = #{snumber}
+	</update>
+	
+</mapper>

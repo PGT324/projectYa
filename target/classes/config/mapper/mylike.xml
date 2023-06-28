@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mylike">
+		<insert id="insertLikeM" parameterType="vo.MyLikeMVO">
+			insert into mylikem values(mylikem_seq.nextval, #{users_idx}, #{m_region1_idx}, #{m_region2_idx}, #{motel_idx})
+		</insert>
+		
+		<insert id="insertLikeH" parameterType="vo.MyLikeHVO">
+			insert into mylikeh values(mylikeh_seq.nextval, #{users_idx},#{h_region1_idx}, #{h_region2_idx}, #{hotel_idx})
+		</insert>
+		
+		<select id="likeListMotel" resultType="int" parameterType="vo.MyLikeMVO">
+			select count(*) from mylikem where users_idx = #{users_idx} and m_region1_idx = #{m_region1_idx} and m_region2_idx = #{m_region2_idx} and motel_idx = #{motel_idx}
+		</select>
+		
+		<select id="likeListHotel" resultType="int" parameterType="vo.MyLikeHVO">
+			select count(*) from mylikeh where users_idx = #{users_idx} and h_region1_idx = #{h_region1_idx} and h_region2_idx = #{h_region2_idx} and hotel_idx = #{hotel_idx}
+		</select>
+		
+		<update id="updateMotelHeartIn" parameterType="vo.Motel">
+			update motel set heart = 1 where m_region1_idx = #{m_region1_idx} and m_region2_idx = #{m_region2_idx} and motel_idx = #{motel_idx}
+		</update>
+		
+		<update id="updateMotelHeartOut" parameterType="vo.Motel">
+			update motel set heart = 0 where m_region1_idx = #{m_region1_idx} and m_region2_idx = #{m_region2_idx} and motel_idx = #{motel_idx}
+		</update>
+		
+		<delete id="deleteLikeM" parameterType="int">
+			delete mylikem where mylikem_idx = #{mylikem_idx}
+		</delete>
+		
+		<select id="mylikemIdx" resultType="int" parameterType="vo.MyLikeMVO">
+			select mylikem_idx from mylikem where users_idx = #{users_idx} and m_region1_idx = #{m_region1_idx} and m_region2_idx = #{m_region2_idx} and motel_idx = #{motel_idx}
+		</select>
+		
+		<update id="updateHotelHeartIn" parameterType="vo.Hotel">
+			update hotel set heart = 1 where h_region1_idx = #{h_region1_idx} and h_region2_idx = #{h_region2_idx} and hotel_idx = #{hotel_idx}
+		</update>
+		
+		<update id="updateHotelHeartOut" parameterType="vo.Hotel">
+			update hotel set heart = 0 where h_region1_idx = #{h_region1_idx} and h_region2_idx = #{h_region2_idx} and hotel_idx = #{hotel_idx}
+		</update>
+		
+		<delete id="deleteLikeH" parameterType="int">
+			delete mylikeh where mylikeh_idx = #{mylikeh_idx}
+		</delete>
+		
+		<select id="mylikehIdx" resultType="int" parameterType="vo.MyLikeHVO">
+			select mylikeh_idx from mylikeh where users_idx = #{users_idx} and h_region1_idx = #{h_region1_idx} and h_region2_idx = #{h_region2_idx} and hotel_idx = #{hotel_idx}
+		</select>
+		
+		<select id="mLikeList" resultType="vo.MyLikeMVO" parameterType="int">
+			select * from mylikem where users_idx = #{users_idx}
+		</select>
+		
+		<select id="hLikeList" resultType="vo.MyLikeHVO" parameterType="int">
+			select * from mylikeh where users_idx = #{users_idx}
+		</select>
+		
+		<select id="motelFromLike" resultType="vo.Motel" parameterType="int">
+			select * from motel where motel_idx = #{motel_idx}
+		</select>
+		
+		<select id="hotelFromLike" resultType="vo.Hotel" parameterType="int">
+			select * from hotel where hotel_idx = #{hotel_idx}
+		</select>
+		
+		<select id="idxFromUsers" resultType="int" parameterType="int">
+			select motel_idx from mylikem where users_idx = #{users_idx}
+		</select>
+		
+		<select id="idxFromUsersH" resultType="int" parameterType="int">
+			select hotel_idx from mylikeh where users_idx = #{users_idx}
+		</select>
+		
+		<update id="motelHeartAll">
+			update motel set heart = 0
+		</update>
+		
+		<update id="hotelHeartAll">
+			update hotel set heart = 0
+		</update>
+		
+		<update id="mHeartFromIdx" parameterType="int">
+			update motel set heart = 1 where motel_idx = #{motel_idx}
+		</update>
+		
+		<update id="hHeartFromIdx" parameterType="int">
+			update hotel set heart = 1 where hotel_idx = #{hotel_idx}
+		</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

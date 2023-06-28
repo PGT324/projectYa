@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="secession">
+	<!-- SQL문들을 작성하는 파일 -->
+	<insert id="insert" parameterType="vo.SecessionVO">
+		insert into secession values(secession_seq.nextval,#{users_idx},#{date_exit},#{date_end},#{content,jdbcType=VARCHAR},#{type})
+	</insert>
+	
+	<select id="total" resultType="map">
+		select st.type_idx,st.type_name,nvl(count(type),0) c from secession_type st left join secession s on st.type_idx = s.type group by st.type_idx,st.type_idx,st.type_name
+	</select>
+	
+	<select id="oneType" parameterType="int" resultType="map">
+		select u.users_idx,u.nickname,u.phone,u.email,u.users_check,nvl(substr(s.content,0,8),'글없음') c,s.date_exit,s.date_end  from secession s inner join users u on s.users_idx = u.users_idx where s.type = #{type} order by s.date_exit desc 
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
